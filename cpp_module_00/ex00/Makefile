@@ -1,45 +1,35 @@
-NAME = megaphone
+#Including the configs for the project
+include config.mk
 
+# Compiler settings
+CXX := g++
+CXXFLAGS := -Wall -Wextra -Werror -std=c++11
 
-S = srcs/
-O = objs/
+# Build structure
+NAME := $(OUTFILE)
+
+OBJ := $(SRC:$(SRC_DIR)%=$(OBJ_DIR)%.o)
 
 all: $(NAME)
 
-.PHONY: all clean fclean re
-
-CC = g++
-CFLAGS += -Wall -Wextra -Werror
-LDFLAGS +=
-
-######################
-##		MANDATORY 	##
-######################
-
-SRC = \
-		$Smegaphone.cpp
-
-OBJ = $(SRC:$S%=$O%.o)
-
-$O:
+$(OBJ_DIR):
 	@mkdir -p $@
 	@echo "Making obj dir and files.."
 
-$(OBJ): | $O
+$(OBJ): | $(OBJ_DIR)
 
-$O%.o: $S%
-	@$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
 	@echo "Project ready for use."
 
 cleanobj:
 	@rm -f $(wildcard $(OBJ))
 
 cleanobjdir: cleanobj
-	@rm -rf $O
-
+	@rm -rf $(OBJ_DIR)
 
 clean: cleanobjdir
 	@echo "Cleaning object files"
@@ -49,3 +39,5 @@ fclean: clean
 	@echo "Project file removed"
 
 re: fclean all
+
+.PHONY: all clean fclean re
