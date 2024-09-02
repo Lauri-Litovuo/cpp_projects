@@ -10,30 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook( void );
+PhoneBook::PhoneBook( void )
 {
-	this->Counter = 0;
+	std::cout << "Use phonebook by typing ADD, SEARCH or EXIT" << std::endl;
+	return ;
 }
 
 
-PhoneBook::~PhoneBook( void );
+PhoneBook::~PhoneBook( void )
 {
 	return ;
 }
 
 bool	PhoneBook::addContact(void)
 {
+	
 	return ;
 }
 
-bool	searchContact(void)
+bool	PhoneBook::searchContact(void)
 {
 
 }
 
-bool	deleteContact(void)
+bool	PhoneBook::deleteContact(void)
 {
 
 }

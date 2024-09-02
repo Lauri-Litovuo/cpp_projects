@@ -1,10 +1,11 @@
 #include <iostream>
+#include <string>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
 int main(){
-	Phonebook Book;
-	string input;
+	PhoneBook myBook;
+	std::string input;
 
 	while (1)
 	{

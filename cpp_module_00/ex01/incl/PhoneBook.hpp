@@ -17,18 +17,15 @@
 
 class PhoneBook
 {
-
-	private:
-
-		int		Counter;
-		Contact contacts[MAX_COUNT];
-
 	public:
 		PhoneBook();
 		~PhoneBook();
 		bool	addContact(void);
 		bool	searchContact(void);
 		bool	deleteContact(void);
+	
+	private:
+		Contact contacts[MAX_COUNT];
 };
 
 #endif

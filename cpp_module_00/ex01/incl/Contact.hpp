@@ -16,20 +16,27 @@
 
 class Contact
 {
+public:
+		Contact( void );
+		~Contact( void );
+		std::string	getFirstName() const;
+		std::string	getLastName() const;
+		std::string	getNickName() const;
+		std::string	getPhoneNumber() const;
+		int			getCounter() const;
 
-	private:
-		std::string	firstName;
-		std::string	lastName;
-		std::string	nickname;
-		std::string	phoneNumber;
-		std::string	darkestSecret;
-	public:
-		Contact();
-		~Contact();
-		std::string	getFirstName();
-		std::string	getLastName();
-		std::string	getNickName();
-		std::string	getPhoneNumber();
+		void	setFirstName(std::string firstName);
+		void	setLastName(std::string lastName);
+		void	setNickName(std::string nickName);
+		void	setPhoneNumber(std::string phoneNumber);
+		void	setDarkestSecret(std::string darkestSecret);
+private:
+		std::string	_firstName;
+		std::string	_lastName;
+		std::string	_nickname;
+		std::string	_phoneNumber;
+		std::string	_darkestSecret;
+		static int	_counter;
 };
 
 #endif
