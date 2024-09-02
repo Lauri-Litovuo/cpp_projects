@@ -12,9 +12,20 @@
 
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook( void );
+{
+	this->Counter = 0;
+}
+
+
+PhoneBook::~PhoneBook( void );
+{
+	return ;
+}
+
 bool	PhoneBook::addContact(void)
 {
-
+	return ;
 }
 
 bool	searchContact(void)
