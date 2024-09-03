@@ -23,6 +23,7 @@ public:
 		std::string	getLastName() const;
 		std::string	getNickName() const;
 		std::string	getPhoneNumber() const;
+		std::string	getDarkestSecret() const;
 		int			getCounter() const;
 
 		void	setFirstName(std::string firstName);
@@ -30,13 +31,13 @@ public:
 		void	setNickName(std::string nickName);
 		void	setPhoneNumber(std::string phoneNumber);
 		void	setDarkestSecret(std::string darkestSecret);
+
 private:
 		std::string	_firstName;
 		std::string	_lastName;
 		std::string	_nickname;
 		std::string	_phoneNumber;
 		std::string	_darkestSecret;
-		static int	_counter;
 };
 
 #endif

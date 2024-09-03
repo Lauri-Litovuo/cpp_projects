@@ -13,7 +13,12 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 # include "Contact.hpp"
+# include <iostream>
+# include <string>
+
 # define MAX_COUNT 8
+# define MAX_WIDTH 10
+
 
 class PhoneBook
 {
@@ -22,10 +27,10 @@ class PhoneBook
 		~PhoneBook();
 		bool	addContact(void);
 		bool	searchContact(void);
-		bool	deleteContact(void);
 	
 	private:
-		Contact contacts[MAX_COUNT];
+		Contact _contacts[MAX_COUNT];
+		int		_contactCount;
 };
 
 #endif

@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := program
+OUTFILE := phonebook
 
 # Source directory
 S:= srcs/
@@ -12,7 +12,8 @@ I := incl/
 
 # Source files
 SRC := \
-		$Smain.cpp
+		$SMain.cpp $SPhoneBook.cpp $SContact.cpp
+
 # Include directories
 CXXFLAGS += -I$I
 

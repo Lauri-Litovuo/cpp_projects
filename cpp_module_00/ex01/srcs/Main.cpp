@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
+#include "../incl/Contact.hpp"
+#include "../incl/PhoneBook.hpp"
 
 int main(){
 	PhoneBook myBook;
@@ -9,8 +9,26 @@ int main(){
 
 	while (1)
 	{
-		if ()
-
+		std::cout << "Enter ADD, SEARCH or EXIT: ";
+		std::cin >> input;
+		if (input == "ADD")
+		{
+			if (!myBook.addContact())
+			{
+				std::cout << "Error adding contact." << std::endl;
+				continue;
+			}
+		}
+		else if (input == "SEARCH")
+		{
+			if (!myBook.searchContact())
+			{
+				std::cout << "Error searching contact." << std::endl;
+				continue;
+			}
+		}
+		else if (input == "EXIT")
+			break;
 	}
 	return (0);
 }

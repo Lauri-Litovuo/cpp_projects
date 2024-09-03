@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
+#include "../incl/Contact.hpp"
 #include <string>
 
 Contact::Contact(void)
@@ -20,12 +20,10 @@ Contact::Contact(void)
 	this->_nickname = "";
 	this->_phoneNumber = "";
 	this->_darkestSecret = "";
-	Contact::_counter += 1;
 }
 
 Contact::~Contact(void)
 {
-	Contact::_counter -= 1;
 	return ;
 }
 
@@ -48,6 +46,11 @@ std::string	Contact::getPhoneNumber() const
 	return(this->_phoneNumber);
 }
 
+std::string	Contact::getDarkestSecret() const
+{
+	return (this->_darkestSecret);
+}
+
 void	Contact::setFirstName(std::string firstName)
 {
 	this->_firstName = firstName;
@@ -68,10 +71,3 @@ void Contact::setDarkestSecret(std::string darkestSecret)
 {
 	this->_darkestSecret = darkestSecret;
 }
-
-int Contact::getCounter() const
-{
-	return (Contact::_counter);
-}
-
-int Contact::_counter = 0;
