@@ -6,12 +6,11 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:33:24 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/08/29 14:51:33 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:41:05 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/Contact.hpp"
-#include <string>
 
 Contact::Contact(void)
 {
@@ -36,6 +35,7 @@ std::string	Contact::getLastName() const
 {
 	return (this->_lastName);
 }
+
 std::string	Contact::getNickName() const
 {
 	return (this->_nickname);
@@ -55,18 +55,22 @@ void	Contact::setFirstName(std::string firstName)
 {
 	this->_firstName = firstName;
 }
+
 void Contact::setLastName(std::string lastName)
 {
 	this->_lastName = lastName;
 }
+
 void Contact::setNickName(std::string nickName)
 {
 	this->_nickname = nickName;
 }
+
 void Contact::setPhoneNumber(std::string phoneNumber)
 {
 	this->_phoneNumber = phoneNumber;
 }
+
 void Contact::setDarkestSecret(std::string darkestSecret)
 {
 	this->_darkestSecret = darkestSecret;

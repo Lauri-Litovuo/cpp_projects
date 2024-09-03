@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:46:40 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/08/29 14:33:20 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:02:15 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 PhoneBook::PhoneBook( void )
 {
-	this->_contactCount = 0;
+	this->_contactPosition = 0;
 	return ;
 }
 
@@ -45,13 +45,26 @@ bool	PhoneBook::addContact(void)
 	newContact.setPhoneNumber(input);
 	getInput("darkest secret: ", input);
 	newContact.setDarkestSecret(input);
-	this->_contacts[this->_contactCount] = newContact;
-	this->_contactCount++;
-	if (this->_contactCount == MAX_COUNT)
-	{
-		this->_contactCount = 0;
-	}
+	this->_contacts[this->_contactPosition] = newContact;
+	this->_contactPosition++;
+	if (this->_contactPosition == MAX_COUNT)
+		this->_contactPosition = 0;
 	return (true);
+}
+
+void indexQuery(int *index)
+{
+	std::string input;
+
+	std::cout << "Enter the index of the contact you want to see: ";
+	std::cin >> input;
+	while (input.length() != 1 || input[0] < '1' || input[0] > '8')
+	{
+		std::cout << "Invalid input. Please enter a number between 1 and 8." << std::endl;
+		std::cout << "Enter the index of the contact you want to see: ";
+		std::cin >> input;
+	}
+	*index = input[0] - '0' - 1;
 }
 
 void printFormattedString(std::string str)
@@ -67,41 +80,53 @@ void printFormattedString(std::string str)
 	}
 }
 
+void printPhoneBook(Contact contacts[MAX_COUNT], int contactCount)
+{
+	for (int i = 0; i < contactCount; i++)
+	{
+		std::cout << i + 1 << "|";
+		printFormattedString(contacts[i].getFirstName());
+		std::cout << "|";
+		printFormattedString(contacts[i].getLastName());
+		std::cout << "|";
+		printFormattedString(contacts[i].getNickName());
+		std::cout << "|";
+		std::cout << std::endl;
+	}
+}
+
+void printContact(Contact *contacts)
+{
+	std::cout << "First Name: " << contacts->getFirstName() << std::endl;
+	std::cout << "Last Name: " << contacts->getLastName() << std::endl;
+	std::cout << "Nickname: " << contacts->getNickName() << std::endl;
+	std::cout << "Phone Number: " << contacts->getPhoneNumber() << std::endl;
+	std::cout << "Darkest Secret: " << contacts->getDarkestSecret() << std::endl;
+}
+
 bool	PhoneBook::searchContact(void)
 {
 	std::string input;
 	int			index;
+	int			contactCount;
 
-	if (this->_contactCount == 0)
+	if (this->_contactPosition == 0 && this->_contacts[0].getFirstName() == "")
 	{
 		std::cout << "No contacts available. You can add one by typing ADD." << std::endl;
 		return (false);
 	}
-	for (int i = 0; i < this->_contactCount; i++)
+	for (contactCount = 0; contactCount < MAX_COUNT; contactCount++)
 	{
-		std::cout << i << "|";
-		printFormattedString(this->_contacts[i].getFirstName());
-		std::cout << "|";
-		printFormattedString(this->_contacts[i].getLastName());
-		std::cout << "|";
-		printFormattedString(this->_contacts[i].getNickName());
-		std::cout << "|";
-		std::cout << std::endl;
+		if (this->_contacts[contactCount].getFirstName() == "")
+			break;
 	}
-	std::cout << "Enter the indext of the contact you want to see: ";
-	std::cin >> input;
-	while (input.length() != 1 || input[0] < '0' || input[0] > '7')
-		std::cout << "Invalid input. Please enter a number between 0 and 7." << std::endl;
-	index = input[0] - '0';
-	if (index >= this->_contactCount)
+	printPhoneBook(this->_contacts, contactCount);
+	indexQuery(&index); 
+	if (index >= contactCount)
 	{
-		std::cout << "Invalid index." << std::endl;
+		std::cout << "Invalid index. No contact in that field" << std::endl;
 		return (false);
 	}
-	std::cout << "First name: " << this->_contacts[index].getFirstName() << std::endl;
-	std::cout << "Last name: " << this->_contacts[index].getLastName() << std::endl;
-	std::cout << "Nickname: " << this->_contacts[index].getNickName() << std::endl;
-	std::cout << "Phone number: " << this->_contacts[index].getPhoneNumber() << std::endl;
-	std::cout << "Darkest secret: " << this->_contacts[index].getDarkestSecret() << std::endl;
-	return true;
+	printContact(&this->_contacts[index]);
+	return (true);
 }

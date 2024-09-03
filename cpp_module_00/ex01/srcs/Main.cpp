@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/03 15:38:40 by llitovuo          #+#    #+#             */
+/*   Updated: 2024/09/03 15:38:46 by llitovuo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <string>
 #include "../incl/Contact.hpp"
@@ -15,7 +27,6 @@ int main(){
 		{
 			if (!myBook.addContact())
 			{
-				std::cout << "Error adding contact." << std::endl;
 				continue;
 			}
 		}
@@ -23,7 +34,6 @@ int main(){
 		{
 			if (!myBook.searchContact())
 			{
-				std::cout << "Error searching contact." << std::endl;
 				continue;
 			}
 		}

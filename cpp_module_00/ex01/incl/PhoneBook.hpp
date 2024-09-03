@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:32:13 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/08/29 14:36:26 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:02:30 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class PhoneBook
 	
 	private:
 		Contact _contacts[MAX_COUNT];
-		int		_contactCount;
+		int		_contactPosition;
 };
 
 #endif
