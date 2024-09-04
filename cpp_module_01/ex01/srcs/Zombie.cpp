@@ -6,12 +6,12 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:44:31 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/04 16:07:07 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:09:41 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "../incl/Zombie.hpp"
+#include "Zombie.hpp"
 
 Zombie::Zombie( void )
 {

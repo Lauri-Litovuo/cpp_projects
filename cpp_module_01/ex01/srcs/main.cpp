@@ -6,11 +6,11 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 13:44:28 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/04 16:07:35 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:09:36 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#include "Zombie.hpp"
 #include <iostream>
 
 Zombie* zombieHorde( int N, std::string name );
