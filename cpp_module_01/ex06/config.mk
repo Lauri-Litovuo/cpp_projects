@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := Harl
+OUTFILE := harlFilter
 
 # Compiler settings
 CXX := g++

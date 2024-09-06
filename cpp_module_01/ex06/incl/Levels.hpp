@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   Levels.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/05 15:49:15 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/06 10:28:04 by llitovuo         ###   ########.fr       */
+/*   Created: 2024/09/06 10:13:57 by llitovuo          #+#    #+#             */
+/*   Updated: 2024/09/06 10:37:46 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
-# include <iostream>
-# include <string>
+#ifndef LEVELS_HPP
+# define LEVELS_HPP
 
-
-class Harl {
-	
-	public:
-		Harl();
-		~Harl();
-		void complain( std::string level);
-
-	private:
-		void	debug( void );
-		void	info( void );
-		void	warning( void );
-		void	error( void );
+enum class Levels
+{
+	DEBUG,
+	INFO,
+	WARNING,
+	ERROR,
+	UNKNOWN,
 };
-
-typedef void (Harl::*function_pointer)(void);
 
 #endif
