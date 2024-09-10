@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:27:26 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/09 11:28:11 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/10 08:57:27 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 int main( void )
- {
+{
 	Fixed a;
 	Fixed b( a );
 	Fixed c;
@@ -25,5 +25,4 @@ int main( void )
 	std::cout << c.getRawBits() << std::endl;
 
 	 return 0;
- }
- 
+}

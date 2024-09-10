@@ -6,15 +6,13 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:52:45 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/09 11:26:21 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:09:42 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <iostream>
-
-//class in orthodox canonical form
 
 class Fixed {
 	public:
