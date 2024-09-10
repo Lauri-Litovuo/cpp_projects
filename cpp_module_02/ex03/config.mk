@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := 
+OUTFILE := isit_in_area
 
 # Compiler settings
 CXX := g++
@@ -15,7 +15,7 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp
+		$Smain.cpp $SFixed.cpp $SPoint.cpp $Sbsp.cpp
 
 # Include directories
 CXXFLAGS += -Wall -Wextra -Werror -std=c++11 -I$I
