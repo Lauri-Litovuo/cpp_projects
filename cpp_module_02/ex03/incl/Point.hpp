@@ -6,11 +6,13 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:53:13 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/10 11:45:09 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:07:56 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef POINT_HPP
+# define POINT_HPP
+# include "Fixed.hpp"
 
 class Point {
 	public:
@@ -27,3 +29,5 @@ class Point {
 		const Fixed _x;
 		const Fixed _y;
 };
+
+#endif
