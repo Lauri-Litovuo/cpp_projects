@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 09:51:06 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/12 13:52:34 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:01:44 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap& src) : ClapTrap(src), ScavTrap(src),
 	_hitPoints = src._hitPoints;
 	_energyPoints = src._energyPoints;
 	_attackDamage = src._attackDamage;
+	std::cout << "DiamondTrap " << this->_name << " is cloned!" << std::endl;
 }
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& rhs)
@@ -49,6 +50,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& rhs)
         ScavTrap::operator=(rhs);
         FragTrap::operator=(rhs);
         _name = rhs._name;
+		std::cout << "DiamondTrap " << this->_name << " is assigned!" << std::endl;
 	}
 	return *this;
 }

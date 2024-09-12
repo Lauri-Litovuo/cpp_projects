@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:19:39 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/12 09:32:44 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:59:57 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,23 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &rhs) {
 
 void ScavTrap::attack(const std::string& target) {
 	if (this->_energyPoints == 0) {
-		std::cout << "ScavTrap " << this->_name << " is out of energy points!" << std::endl;
+		std::cout << this->_name << " is out of energy points!" << std::endl;
 		return ;
 	}
-	std::cout << "ScavTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
+	std::cout << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 	this->_energyPoints -= 1;
 }
 
 void ScavTrap::guardGate() {
 	if (this->_guardGateMode == false && this->_hitPoints > 0) {
-		std::cout << "ScavTrap " << this->_name << " has entered Gate keeper mode!" << std::endl;
+		std::cout << this->_name << " has entered Gate keeper mode!" << std::endl;
 		_guardGateMode = true;
 	}
 	else if (this->_hitPoints == 0) {
-		std::cout << "ScavTrap " << this->_name << " is already destroyed!" << std::endl;
+		std::cout << this->_name << " is already destroyed!" << std::endl;
 	}
 	else {
-		std::cout << "ScavTrap " << this->_name << " has exited Gate keeper mode!" << std::endl;
+		std::cout << this->_name << " has exited Gate keeper mode!" << std::endl;
 		_guardGateMode = false;
 	}
 }

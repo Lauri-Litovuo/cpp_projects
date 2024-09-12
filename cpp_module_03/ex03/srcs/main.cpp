@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 11:15:47 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/12 13:51:42 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:02:26 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int main() {
 	}*/
 	{
 	DiamondTrap diamondtrap1;
-	//DiamondTrap diamondtrap2("DiamondTrap2");
 	
 	diamondtrap1.attack("Someone");
 	diamondtrap1.whoAmI();
-	//diamondtrap2.whoAmI();
+	diamondtrap1.HighFivesGuys();
+	diamondtrap1.guardGate();
 	}
 	
 	return (0);

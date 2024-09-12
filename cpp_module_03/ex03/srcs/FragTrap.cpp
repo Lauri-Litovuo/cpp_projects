@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 14:19:39 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/12 09:42:16 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:59:14 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ FragTrap& FragTrap::operator=(const FragTrap &rhs) {
 
 void FragTrap::attack(const std::string& target) {
 	if (this->_energyPoints == 0) {
-		std::cout << "FragTrap " << this->_name << " is out of energy points!" << std::endl;
+		std::cout << this->_name << " is out of energy points!" << std::endl;
 		return ;
 	}
-	std::cout << "FragTrap " << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
+	std::cout << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << std::endl;
 	this->_energyPoints -= 1;
 }
 
 void FragTrap::HighFivesGuys() {
 	if (this->_hitPoints == 0) {
-		std::cout << "FragTrap " << this->_name << " is already destroyed!" << std::endl;
+		std::cout << this->_name << " is already destroyed!" << std::endl;
 	}
 	else {
-		std::cout << "FragTrap " << this->_name << " high fives Traps!" << std::endl;
+		std::cout << this->_name << " high fives Traps!" << std::endl;
 	}
 }
