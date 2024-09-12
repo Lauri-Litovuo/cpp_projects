@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:37:06 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/11 14:02:31 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:20:12 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitPoints == 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " is already dead!" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is already destroyed!" << std::endl;
 		return ;
 	}
 	if (this->_hitPoints <= amount)
@@ -84,7 +84,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitPoints == 0)
 	{
-		std::cout << "ClapTrap " << this->_name << " is already dead!" << std::endl;
+		std::cout << "ClapTrap " << this->_name << " is already destroyed!" << std::endl;
 		return ;
 	}
 	if (_energyPoints == 0)
