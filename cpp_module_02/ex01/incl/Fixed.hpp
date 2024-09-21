@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:52:45 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/09 16:24:47 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:20:43 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FIXED_HPP
 # include <iostream>
 # include <cmath>
+# include <iomanip>
 
 class Fixed {
 	public:

@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:25:38 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/09 16:23:59 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/09/21 16:22:21 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int Fixed::toInt(void) const {
 }
 
 std::ostream& operator<<(std::ostream& os, Fixed const& rhs) {
-	os << rhs.toFloat();
+	//set precision by << std::fixed << std::setprecision(6)
+	os  << rhs.toFloat();
 	return os;
 }
