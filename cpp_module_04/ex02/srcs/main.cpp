@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:03:15 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/10/21 19:54:37 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:10:54 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,27 @@ void testSingleAnimals() {
 	delete i;
 }
 
+void testAbstractMakeSound() {
+	//The following is not compiling because of Animals' abstract
+	// Animal *animal = new Animal();
+	// animal->makeSound();
+	// delete animal;
+
+	//The following does
+	Animal *dog = new Dog();
+	dog->makeSound();
+	delete dog;
+	
+}
+
 int main() {
 	testAnimalArray();
 	std::cout << "\n\n---------------------\n" << std::endl;
 	testAnimalArrayWithBrain();
 	std::cout << "\n\n---------------------\n" << std::endl;
 	testSingleAnimals(); //subject
+	std::cout << "\n\n---------Seems to work as it did----------\n" << std::endl;
+	testAbstractMakeSound();
+	
 	return 0;
 }

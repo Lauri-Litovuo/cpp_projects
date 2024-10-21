@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:10:50 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/13 14:44:00 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/21 19:42:55 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ class Dog : public Animal {
 		Dog( Dog const& src );
 		Dog& operator= (Dog const& rhs);
 		void makeSound( void ) const;
+		void setBrain(int index, std::string idea);
+		std::string getBrain(int index) const;
+
 	private:
 		std::string type;
 		Brain *brain;

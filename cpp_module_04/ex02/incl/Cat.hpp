@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 11:03:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/13 13:17:29 by llitovuo         ###   ########.fr       */
+/*   Created: 2024/09/13 11:10:50 by llitovuo          #+#    #+#             */
+/*   Updated: 2024/10/21 20:11:49 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
+# include "Animal.hpp"
+# include "Brain.hpp"
 # include <string>
 # include <iostream>
 
-
-class WrongAnimal {
+class Cat : public Animal {
 	public:
-		WrongAnimal( void );
-		WrongAnimal( std::string type );
-		virtual ~WrongAnimal( void );
-		WrongAnimal( WrongAnimal const& src );
-		WrongAnimal& operator= (WrongAnimal const& rhs);
-		std::string getType( void ) const;
-		void setType( std::string type );
-		virtual void makeSound( void ) const;
-
-	protected:
+		Cat( void );
+		~Cat( void );
+		Cat( Cat const& src );
+		Cat& operator= (Cat const& rhs);
+		void makeSound( void ) const override; //needs override as it is a virtual function
+		void setBrain(int index, std::string idea);
+		std::string getBrain(int index) const;
+		
+	private:
 		std::string type;
+		Brain *brain;
 };
 
 #endif

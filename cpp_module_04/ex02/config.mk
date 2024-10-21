@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := brains
+OUTFILE := abstract
 
 # Compiler settings
 CXX := g++

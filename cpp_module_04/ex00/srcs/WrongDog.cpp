@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:36:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/13 13:36:13 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:02:00 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ WrongDog& WrongDog::operator=(WrongDog const& rhs) {
 }
 
 void WrongDog::makeSound( void ) const {
-	std::cout << "* WrongDog sounds *" << std::endl;
+	std::cout << "* WrongDog sounds *miu mau" << std::endl;
 }
 

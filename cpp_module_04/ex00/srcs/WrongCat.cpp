@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 13:36:16 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/13 13:39:08 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:01:53 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ WrongCat& WrongCat::operator=(WrongCat const& rhs) {
 }
 
 void WrongCat::makeSound( void ) const {
-	std::cout << "* WrongCat sounds *" << std::endl;
+	std::cout << "* WrongCat sounds * bark bark" << std::endl;
 }
 

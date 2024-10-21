@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:39:12 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/09/13 14:47:52 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:32:30 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Brain{
 		~Brain( void );
 		Brain( Brain const& src );
 		Brain& operator= (Brain const& rhs);
-		void setIdea( std::string idea, int index );
+		void setIdea(int index, std::string idea);
 		std::string getIdea(int index) const;
 
 	private:
