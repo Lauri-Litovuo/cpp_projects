@@ -1,46 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:03:13 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/10/21 20:03:48 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:00:20 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal( void ) {
-	this->type = "Animal";
+AAnimal::AAnimal( void ) {
+	this->type = "AAnimal";
 	std::cout << "Some creature is borned" << std::endl;
 }
 
-Animal::Animal ( std::string type ) : type(type) {
-	std::cout << "An Animal: ";
+AAnimal::AAnimal ( std::string type ) : type(type) {
+	std::cout << "An AAnimal: ";
 }
 
-Animal::~Animal( void ) {
-	if (this->type == "Animal")
+AAnimal::~AAnimal( void ) {
+	if (this->type == "AAnimal")
 		std::cout << "An creature has died."<< std::endl;
 	else
-		std::cout << "Subclass called an Animal deconstructor" << std::endl;
+		std::cout << "Subclass called an AAnimal deconstructor" << std::endl;
 }
 
-Animal::Animal( Animal const& src ) {
+AAnimal::AAnimal(AAnimal const& src ) {
 	*this = src;
 }
 
-Animal& Animal::operator= (Animal const& rhs) {
+AAnimal& AAnimal::operator= (AAnimal const& rhs) {
 	this->type = rhs.type;
 	return *this;
 }
 
-std::string Animal::getType( void ) const {
+std::string AAnimal::getType( void ) const {
 	return this->type;
 }
 
-void Animal::setType( std::string type ) {
+void AAnimal::setType( std::string type ) {
 	this->type = type;
+}
+
+void AAnimal::makeSound( void ) const {
+	std::cout << "*AAnimal sounds *" << std::endl;
 }
