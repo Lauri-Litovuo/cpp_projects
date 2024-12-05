@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:10:42 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/10/21 19:43:14 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/23 09:45:39 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ Dog::~Dog( void ) {
 
 Dog::Dog( Dog const& src) : Animal("Dog") {
 	*this = src;
+	this->brain = new Brain(*src.brain);
 	std::cout << "A Dog has been duped" << std::endl;
 }
 
 Dog& Dog::operator=(Dog const& rhs) {
 	this->type = rhs.type;
+	this->brain = rhs.brain;
 	return *this;
 }
 

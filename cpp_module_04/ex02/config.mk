@@ -15,7 +15,7 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp $SAnimal.cpp $SCat.cpp $SDog.cpp $SBrain.cpp
+		$Smain.cpp $SAAnimal.cpp $SCat.cpp $SDog.cpp $SBrain.cpp
 
 # Include directories
 CXXFLAGS += -Wall -Wextra -Werror -std=c++11 -I$I

@@ -6,13 +6,13 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 11:10:42 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/10/21 19:43:23 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/10/23 10:01:39 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat( void ) : Animal("Cat") {
+Cat::Cat( void ) : AAnimal("Cat") {
 	Brain *newBrain = new Brain();
 	this->brain = newBrain;
 	std::cout << "A Cat has been created" << std::endl;
@@ -26,13 +26,15 @@ Cat::~Cat( void ) {
 }
 
 
-Cat::Cat( Cat const& src) : Animal("Cat") {
+Cat::Cat( Cat const& src) : AAnimal("Cat") {
 	*this = src;
+	this->brain = new Brain(*src.brain);
 	std::cout << "A Cat has been duped" << std::endl;
 }
 
 Cat& Cat::operator=(Cat const& rhs) {
 	this->type = rhs.type;
+	this->brain = rhs.brain;
 	return *this;
 }
 

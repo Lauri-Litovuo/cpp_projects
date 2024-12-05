@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AAnimal_HPP
+# define AAnimal_HPP
 # include <string>
 # include <iostream>
 
 
-class Animal {
+class AAnimal {
 	public:
-		Animal( void );
-		Animal( std::string type );
-		virtual ~Animal( void );
-		Animal( Animal const& src );
-		Animal& operator= (Animal const& rhs);
+		AAnimal( void );
+		AAnimal( std::string type );
+		virtual ~AAnimal( void );
+		AAnimal( AAnimal const& src );
+		AAnimal& operator= (AAnimal const& rhs);
 		std::string getType( void ) const;
 		void setType( std::string type );
 		virtual void makeSound( void ) const = 0; //this makes the class abstract because pure virtual function
