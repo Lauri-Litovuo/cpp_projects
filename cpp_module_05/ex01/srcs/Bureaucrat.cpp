@@ -1,18 +1,16 @@
-#include "Bureaucrat.hpp"
+#include "../incl/Bureaucrat.hpp"
 #include <iostream>
 
-Bureaucrat::Bureaucrat(void){
-	_grade = 1;
+Bureaucrat::Bureaucrat(void) : _grade(2), _name(""){
 	std::cout << "Bureaucrat " << _name << " with " << _grade << " constructed" << std::endl;
 };
 
-Bureaucrat::Bureaucrat(int grade){
+Bureaucrat::Bureaucrat(int grade, const std::string name) : _grade(grade), _name(name)
+{
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	else
-		_grade = grade;
 	std::cout << "Bureaucrat " << _name << " with grade " << _grade << " constructed" << std::endl;
 };
 
@@ -30,11 +28,11 @@ Bureaucrat& Bureaucrat::operator= (Bureaucrat const& rhs){
 	return (*this);
 };
 
-std::string Bureaucrat::getName(void) const{
-	return _name;
+const std::string Bureaucrat::getName(void) const{
+	return this->_name;
 };
 
-unsigned int Bureaucrat::getGrade(void) const{
+int Bureaucrat::getGrade(void) const{
 	return _grade;
 };
 
@@ -66,5 +64,10 @@ const char* Bureaucrat::GradeTooHighException::what() const noexcept{
 const char* Bureaucrat::GradeTooLowException::what() const noexcept{
 	return "Bureaucrat's grade too low";
 };
+
+std::ostream & operator<<(std::ostream & os, Bureaucrat const & rhs) {
+	os << rhs.getName() + ", bureaucrat grade " + std::to_string(rhs.getGrade());
+	return os;
+}
 
 

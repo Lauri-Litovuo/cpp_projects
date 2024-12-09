@@ -1,9 +1,13 @@
-#include "Bureaucrat.hpp"
+#include "../incl/Bureaucrat.hpp"
+#include <iostream>
 
 int main(){
 	try{
-		const Bureaucrat *one = new Bureaucrat(15);
-		delete one;
+		Bureaucrat one(2, "josh");
+		std::cout << one << std::endl;
+		one.incrementGrade();
+		one.decrementGrade();
+		one.decrementGrade();
 
 	} catch (std::exception &e)
 	{
