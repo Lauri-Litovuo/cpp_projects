@@ -18,16 +18,36 @@ Intern& Intern::operator=(Intern const& rhs){
 }
 
 AForm* Intern::makeForm(std::string formName, std::string target){
-	if (formName == "presidential pardon")
-		return new PresidentialPardonForm(target);
-	else if (formName == "robotomy request")
-		return new RobotomyRequestForm(target);
-	else if (formName == "shrubbery creation")
-		return new ShrubbberyCreationForm(target);
-	else
-		throw FormNotFoundException();
+	AForm* form;
+	try{
+		std::string availableForms[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+		int i;
+		for (i = 0; i < 3; i++)
+		{
+			if (formName == availableForms[i])
+				break;
+			if (i == 2)
+				throw FormNotFoundException();
+		}
+		std::cout << "Intern creates" << availableForms[i] << std::endl;
+		switch(i)
+		{
+			case 0:
+				form = new PresidentialPardonForm(target);
+				break ;
+			case 1:
+				form = new RobotomyRequestForm(target);
+				break ;
+			case 2:
+				form = new ShrubbberyCreationForm(target);
+				break ;
+		}
+	}catch(const std::exception &e){
+		throw;
+	}
+	return form;
 }
 
 const char* Intern::FormNotFoundException::what() const noexcept{
-	return "Form not found";
+	return "Asked form not found, thus no form was created by intern";
 }
