@@ -2,7 +2,10 @@
 #include <iomanip>
 #include <string>
 #include <exception>
+#include <iostream>
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form {
 	public:
@@ -14,8 +17,8 @@ class Form {
 
 		const std::string getName() const;
 		bool getSignState() const;
-		const int getGradeToSign() const;
-		void beSigned(Bureaucrat);
+		int getGradeToSign() const;
+		void beSigned(Bureaucrat signer);
 
 		class GradeTooHighException : public std::exception
 		{
@@ -34,3 +37,5 @@ class Form {
 		const int _gradeToSign;
 		bool _signState;
 };
+
+std::ostream & operator<<(std::ostream& os, Form const & rhs);

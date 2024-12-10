@@ -15,16 +15,15 @@ Form::Form(std::string name, const int gradeToSign) : _name(name), _gradeToSign(
 Form::~Form(){
 };
 
-Form::Form(Form const& src){
+Form::Form(Form const& src) : _name(src.getName()), _gradeToSign(src.getGradeToSign())
+{
 	*this = src;
 };
 
 Form& Form::operator= (Form const& rhs){
 	if (this != &rhs)
 	{
-		_name = rhs.getName();
 		this->_signState = rhs.getSignState();
-		_gradeToSign = rhs.getGradeToSign();
 	}
 	return (*this);
 };
@@ -37,12 +36,12 @@ bool Form::getSignState() const{
 	return this->_signState;
 }
 
-const int Form::getGradeToSign() const{
+int Form::getGradeToSign() const{
 	return this->_gradeToSign;
 }
 
 void Form::beSigned(Bureaucrat signer){
-	if (_gradeToSign < signer.getGrade())
+	if (_gradeToSign >= signer.getGrade())
 		_signState = true;
 	else
 		throw GradeTooLowException();
@@ -54,4 +53,14 @@ const char* Form::GradeTooHighException::what() const noexcept{
 
 const char* Form::GradeTooLowException::what() const noexcept{
 	return "Grade too low";
+}
+
+std::ostream & operator<<(std::ostream& os, Form const & rhs){
+	os << "Form " << rhs.getName() << " is ";
+	if (rhs.getSignState())
+		os << "signed";
+	else
+		os << "not signed";
+	os << " and requires grade " << rhs.getGradeToSign() << " to be signed";
+	return os;
 }

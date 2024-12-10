@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := bureaucreat
+OUTFILE := form
 
 # Compiler settings
 CXX := g++
@@ -15,7 +15,7 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp $SBureaucrat.cpp
+		$Smain.cpp $SBureaucrat.cpp $SForm.cpp
 
 # Include directories
 CXXFLAGS += -Wall -Wextra -Werror -std=c++11 -I$I

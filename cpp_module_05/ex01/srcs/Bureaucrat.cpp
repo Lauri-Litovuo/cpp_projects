@@ -70,4 +70,14 @@ std::ostream & operator<<(std::ostream & os, Bureaucrat const & rhs) {
 	return os;
 }
 
-
+void Bureaucrat::signForm(Form& form){
+	try
+	{
+		form.beSigned(*this);
+		std::cout << _name << " signs " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " could't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
