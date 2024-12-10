@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := bureaucreat
+OUTFILE := multiform
 
 # Compiler settings
 CXX := g++
@@ -15,10 +15,10 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp $SBureaucrat.cpp
+		$Smain.cpp $SAForm.cpp $SBureaucrat.cpp $SShrubberyCreationForm.cpp $SRobotomyRequestForm.cpp $SPresidentialPardonForm.cpp
 
 # Include directories
-CXXFLAGS += -Wall -Wextra -Werror -std=c++11 -I$I
+CXXFLAGS += -Wall -Wextra -Werror -std=c++17 -I$I
 
 # Libraries to link (add -L for library directories and -l for libraries)
 LDFLAGS :=
