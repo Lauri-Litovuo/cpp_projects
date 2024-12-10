@@ -29,7 +29,7 @@ void ShrubbberyCreationForm::execute(Bureaucrat const & executor) const{
 	if (executor.getGrade() > 137)
 		throw AForm::GradeTooLowException();
 	try{
-		if(_target.empty() || std::filesystem::is_directory(_target))
+		if(std::filesystem::is_directory(_target))
 			throw std::exception();
 		std::ofstream file(_target + "_shrubbery");
 		if (!file.is_open())
@@ -39,7 +39,7 @@ void ShrubbberyCreationForm::execute(Bureaucrat const & executor) const{
 		file << "     / \\ / \\       " << std::endl;
 		file << "      ||   ||        " << std::endl;
 	}catch(const std::exception &e){
-		std::cerr << "target could not be opened or is a directory" << std::endl;
+		throw;
 	}
 }
 

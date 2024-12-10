@@ -87,11 +87,18 @@ void Bureaucrat::executeForm(AForm const & form){
 	{
 		std::cout << _name << " tries to execute " << form.getName() << std::endl;
 		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (const AForm::FormNotSignedException& e)
 	{
 		std::cerr << _name << " could't execute " << form.getName() << " because " << e.what() << std::endl;
 	}
-	std::cout << _name << " executed " << form.getName() << std::endl;
-		
+	catch (const AForm::GradeTooLowException& e)
+	{
+		std::cerr << _name << " could't execute " << form.getName() << " because " << e.what() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " could't execute " << form.getName() << " because target could not be opened or is a directory" << std::endl;
+	}
 }
