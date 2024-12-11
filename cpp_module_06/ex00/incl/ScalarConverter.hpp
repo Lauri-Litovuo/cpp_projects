@@ -5,6 +5,14 @@
 #include <limits>
 #include <cmath>
 
+enum eType
+{
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	NA
+};
 
 class ScalarConverter
 {
