@@ -15,7 +15,7 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp $SSerializer.cpp
+		$Smain.cpp $SBase.cpp $SIdentify.cpp
 
 # Include directories
 CXXFLAGS += -Wall -Wextra -Werror -std=c++17 -I$I
