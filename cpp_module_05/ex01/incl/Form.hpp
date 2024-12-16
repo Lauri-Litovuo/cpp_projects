@@ -10,7 +10,7 @@ class Bureaucrat;
 class Form {
 	public:
 		Form();
-		Form(const std::string name, const int gradeToSign);
+		Form(const std::string name, const int gradeToSign, const int gradeToExecute);
 		~Form();
 		Form(Form const& src);
 		Form & operator=(Form const& rhs);
@@ -18,6 +18,7 @@ class Form {
 		const std::string getName() const;
 		bool getSignState() const;
 		int getGradeToSign() const;
+		int getGradeToExecute() const;
 		void beSigned(Bureaucrat signer);
 
 		class GradeTooHighException : public std::exception
@@ -35,6 +36,7 @@ class Form {
 	private:
 		const std::string _name;
 		const int _gradeToSign;
+		const int _gradeToExecute;
 		bool _signState;
 };
 

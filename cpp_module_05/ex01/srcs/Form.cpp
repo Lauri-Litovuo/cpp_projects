@@ -1,21 +1,21 @@
 #include "Form.hpp"
 
-Form::Form() : _name("form"), _gradeToSign(1), _signState(false){
+Form::Form() : _name("form"), _gradeToSign(1), _gradeToExecute(1), _signState(false){
 };
 
-Form::Form(std::string name, const int gradeToSign) : _name(name), _gradeToSign(gradeToSign)
+Form::Form(std::string name, const int gradeToSign, const int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
 	_signState = false;
-	if (gradeToSign > 150)
+	if (gradeToSign > 150 || gradeToExecute > 150)
 		throw GradeTooLowException();
-	if (gradeToSign < 1)
+	if (gradeToSign < 1 || gradeToExecute < 1)
 		throw GradeTooHighException();
 };
 
 Form::~Form(){
 };
 
-Form::Form(Form const& src) : _name(src.getName()), _gradeToSign(src.getGradeToSign())
+Form::Form(Form const& src) : _name(src.getName()), _gradeToSign(src.getGradeToSign()), _gradeToExecute(src.getGradeToExecute())
 {
 	*this = src;
 };
@@ -40,6 +40,10 @@ int Form::getGradeToSign() const{
 	return this->_gradeToSign;
 }
 
+int Form::getGradeToExecute() const{
+	return this->_gradeToExecute;
+}
+
 void Form::beSigned(Bureaucrat signer){
 	if (_gradeToSign >= signer.getGrade())
 		_signState = true;
@@ -61,6 +65,6 @@ std::ostream & operator<<(std::ostream& os, Form const & rhs){
 		os << "signed";
 	else
 		os << "not signed";
-	os << " and requires grade " << rhs.getGradeToSign() << " to be signed";
+	os << " and requires grade " << rhs.getGradeToSign() << " to be signed and " << rhs.getGradeToExecute();
 	return os;
 }
