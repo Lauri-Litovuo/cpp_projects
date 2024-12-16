@@ -2,7 +2,7 @@
 OUTFILE := multiform
 
 # Compiler settings
-CXX := g++
+CXX := c++
 
 # Source directory
 S:= ./srcs/
