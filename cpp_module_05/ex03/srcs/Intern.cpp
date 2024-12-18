@@ -29,7 +29,7 @@ AForm* Intern::makeForm(std::string formName, std::string target){
 			if (i == 2)
 				throw FormNotFoundException();
 		}
-		std::cout << "Intern creates" << availableForms[i] << std::endl;
+		std::cout << "Intern creates " << availableForms[i] << std::endl;
 		switch(i)
 		{
 			case 0:
