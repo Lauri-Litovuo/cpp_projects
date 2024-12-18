@@ -8,6 +8,7 @@ void presidentialTest(){
 	std::cout << "Testing PresidentialPardonForm class" << std::endl;
 	try{
 		PresidentialPardonForm form("target");
+		std::cout << form << std::endl;
 		Bureaucrat bureaucrat(5, "high");
 		bureaucrat.signForm(form);
 		bureaucrat.executeForm(form);
@@ -15,7 +16,7 @@ void presidentialTest(){
 			std::cerr << e.what() << std::endl;
 		}
 	std::cout << "\n";
-	
+
 	//sign failed
 	try{
 		std::cout << "Checking sign failure" << std::endl;
@@ -27,7 +28,7 @@ void presidentialTest(){
 			std::cerr << e.what() << std::endl;
 		}
 	std::cout << "\n";
-	
+
 	//execute failed
 	try{
 		std::cout << "Checking execute failure" << std::endl;
@@ -63,7 +64,7 @@ void robotomyTest(){
 			std::cerr << e.what() << std::endl;
 		}
 	std::cout << "\n";
-	
+
 	//execute failed
 	try{
 		std::cout << "Checking execute failure" << std::endl;
@@ -75,7 +76,7 @@ void robotomyTest(){
 			std::cerr << e.what() << std::endl;
 		}
 	std::cout << "\n";
-	
+
 	//checking randomness
 	try{
 		std::cout << "Checking randomness" << std::endl;
@@ -142,7 +143,7 @@ void shrubberyTest(){
 
 
 int main(){
-	//testing Aform abstract class
+	// testing Aform abstract class
 	// std::cout << "Testing AForm abstract class" << std::endl;
 	// AForm form("form", 0, 0);
 
