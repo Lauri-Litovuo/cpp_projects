@@ -65,6 +65,6 @@ std::ostream & operator<<(std::ostream& os, Form const & rhs){
 		os << "signed";
 	else
 		os << "not signed";
-	os << " and requires grade " << rhs.getGradeToSign() << " to be signed and " << rhs.getGradeToExecute();
+	os << " and requires grade " << rhs.getGradeToSign() << " to be signed and " << rhs.getGradeToExecute() << " to be executed.";
 	return os;
 }
