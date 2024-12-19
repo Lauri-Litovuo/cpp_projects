@@ -1,8 +1,12 @@
 #pragma once
-#include <vector>
-
+#include <algorithm>
+#include <exception>
+#include <iostream>
 
 template <typename T>
-T* easyfind(std::vector<T> haystack, int needle){
-
+void easyfind(T& haystack, int needle){
+	if (std::find(haystack.begin(), haystack.end(), needle) != haystack.end())
+		std::cout << "found the first occurance of " << needle << std::endl;
+	else
+		throw std::exception();
 };

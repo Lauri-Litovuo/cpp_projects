@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := array
+OUTFILE := easyfind
 
 # Compiler settings
 CXX := g++
