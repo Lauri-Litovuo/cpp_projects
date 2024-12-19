@@ -1,4 +1,4 @@
-#include "easyfind.hpp"
+#include "EasyFind.hpp"
 #include <iostream>
 #include <vector>
 #include <array>
@@ -10,29 +10,34 @@ int main(){
 	std::vector<int> intVec = {};
 	std::vector<int> intVec2 = {1, 3, 55, 6, 77, 9012};
 	try {
-		easyfind(intVec2, 77);
+		auto it = easyFind(intVec2, 77);
+		std::cout << "Found the parameter from index: " << std::distance(intVec2.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		easyfind(intVec2, 4);
+		auto it = easyFind(intVec2, 4);
+		std::cout << "Found the parameter from index: " << std::distance(intVec2.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		easyfind(intVec, 4);
+		auto it = easyFind(intVec, 4);
+		std::cout << "Found the parameter from index: " << std::distance(intVec.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 
 	std::vector<float> floatVec = {1.0f, 3.4f, 55.5f, 74.0f, 74.9f, 9012.0f};
 	try {
-		easyfind(floatVec, 74);
+		auto it = easyFind(floatVec, 74);
+		std::cout << "Found the parameter from index: " << std::distance(floatVec.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		easyfind(floatVec, 75);
+		auto it = easyFind(floatVec, 75);
+		std::cout << "Found the parameter from index: " << std::distance(floatVec.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
@@ -42,18 +47,21 @@ int main(){
 	std::cout << "testing with array" << std::endl;
 	std::array<int, 5> intArray = {1, 3, 55, 6, 77};
 	try {
-		easyfind(intArray, 77);
+		auto it = easyFind(intArray, 77);
+		std::cout << "Found the parameter from index: " << std::distance(intArray.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		easyfind(intArray, 4);
+		auto it = easyFind(intArray, 4);
+		std::cout << "Found the parameter from index: " << std::distance(intArray.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	const std::array<int, 5> constIntArray = {1, 3, 55, 6, 77};
 	try {
-		easyfind(constIntArray, 77);
+		easyFind(constIntArray, 77);
+		std::cout << "Found the parameter " << std::endl;;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
@@ -62,14 +70,15 @@ int main(){
 	std::cout << "testing with string" << std::endl;
 	std::string test = "hello";
 	try {
-		easyfind(test, 'o');
+		auto it = easyFind(test, 'o');
+		std::cout << "Found the parameter from index: " << std::distance(test.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		easyfind(test, 'a');
+		auto it = easyFind(test, 'a');
+		std::cout << "Found the parameter from index: " << std::distance(test.begin(), it) << std::endl;
 	}catch (std::exception &e){
 		std::cout << e.what() << std::endl;
 	}
 }
-
