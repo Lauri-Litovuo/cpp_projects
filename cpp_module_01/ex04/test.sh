@@ -20,4 +20,4 @@ touch empty.txt
 cat empty.txt.replace
 
 echo "\nnonexistent file"
-./mySed nonexistent.txt test exam
+./mySed nonexistent.txt test
