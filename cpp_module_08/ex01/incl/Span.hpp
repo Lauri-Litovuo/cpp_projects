@@ -14,13 +14,13 @@ class Span {
 		bool _isFull;
 
 	public:
-		Span();
 		Span(unsigned int N);
 		Span(const Span &other);
 		~Span();
 		Span &operator=(const Span &other);
 
 		void addNumber(int number);
+		std::vector<int> getNumbers() const;
 
 		unsigned int shortestSpan();
 		unsigned int longestSpan();
@@ -29,6 +29,11 @@ class Span {
 		void addRange(Iterator begin, Iterator end);
 
 		class SpanException : public std::exception {
+			public:
+				const char* what() const noexcept override;
+		};
+
+		class SpanFullException : public std::exception {
 			public:
 				const char* what() const noexcept override;
 		};

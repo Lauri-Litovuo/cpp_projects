@@ -18,7 +18,7 @@ SRC := \
 		$Smain.cpp $SSpan.cpp
 
 # Include directories
-CXXFLAGS += -Wall -Wextra -Werror -std=c++17 -I$I
+CXXFLAGS += -Wall -Wextra -Werror -I$I
 
 # Libraries to link (add -L for library directories and -l for libraries)
 LDFLAGS :=

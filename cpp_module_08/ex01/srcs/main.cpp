@@ -1,84 +1,83 @@
-#include "EasyFind.hpp"
+#include "Span.hpp"
 #include <iostream>
 #include <vector>
 #include <array>
 #include <exception>
+#include <random>
+#include <algorithm>
+
 
 int main(){
-	{
-	std::cout << "testing with vector" << std::endl;
-	std::vector<int> intVec = {};
-	std::vector<int> intVec2 = {1, 3, 55, 6, 77, 9012};
-	try {
-		auto it = easyFind(intVec2, 77);
-		std::cout << "Found the parameter from index: " << std::distance(intVec2.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
-	try {
-		auto it = easyFind(intVec2, 4);
-		std::cout << "Found the parameter from index: " << std::distance(intVec2.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
-	try {
-		auto it = easyFind(intVec, 4);
-		std::cout << "Found the parameter from index: " << std::distance(intVec.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
+ {
+	std::cout << "Subject test" << std::endl;
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+ }
+ {
+	std::cout << "Testing with same number" << std::endl;
+	Span sp = Span(2);
+	sp.addNumber(6);
+	sp.addNumber(6);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+ }
 
-	std::vector<float> floatVec = {1.0f, 3.4f, 55.5f, 74.0f, 74.9f, 9012.0f};
-	try {
-		auto it = easyFind(floatVec, 74);
-		std::cout << "Found the parameter from index: " << std::distance(floatVec.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
+ {
+	std::cout << "Testing with one number" << std::endl;
+	Span sp = Span(1);
+	sp.addNumber(6);
+	try{
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 	}
-	try {
-		auto it = easyFind(floatVec, 75);
-		std::cout << "Found the parameter from index: " << std::distance(floatVec.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
+	catch(const std::exception &e){
+		std::cerr << e.what() << std::endl;
 	}
+ }
+ 
+ {
+	std::cout << "Testing with empty span" << std::endl;
+	Span sp = Span(1);
+	try{
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 	}
+	catch(const std::exception &e){
+		std::cerr << e.what() << std::endl;
+	}
+ }
+ {
+	std::cout << "Testing with range" << std::endl;
+	Span sp = Span(5);
+	std::array<int, 5> arr = {6, 3, 17, 9, 11};
+	sp.addRange(arr.begin(), arr.end());
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+ }
 
-	{
-	std::cout << "testing with array" << std::endl;
-	std::array<int, 5> intArray = {1, 3, 55, 6, 77};
-	try {
-		auto it = easyFind(intArray, 77);
-		std::cout << "Found the parameter from index: " << std::distance(intArray.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
-	try {
-		auto it = easyFind(intArray, 4);
-		std::cout << "Found the parameter from index: " << std::distance(intArray.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
-	const std::array<int, 5> constIntArray = {1, 3, 55, 6, 77};
-	try {
-		easyFind(constIntArray, 77);
-		std::cout << "Found the parameter " << std::endl;;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
+ {
+	std::cout << "Testing with 10 001 elements" << std::endl;
+	Span sp = Span(10001);
+	std::vector<int> vec(10001);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> dis(1, 100000);
+	for (int i = 0; i < 10001; i++)
+		vec[i] = dis(gen);
+	sp.addRange(vec.begin(), vec.end());
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+	std::cout << "The smallest and biggest number in the span: " << *std::min_element(vec.begin(), vec.end()) << " " << *std::max_element(vec.begin(), vec.end()) << std::endl;
+	// std::cout << "The vector is sorted: " << std::endl;
+	// std::sort(vec.begin(), vec.end());
+	// for (int i = 0; i < 10001; i++)
+	// 	std::cout << vec[i] << " ";
+ }
 
-	}
-	std::cout << "testing with string" << std::endl;
-	std::string test = "hello";
-	try {
-		auto it = easyFind(test, 'o');
-		std::cout << "Found the parameter from index: " << std::distance(test.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
-	try {
-		auto it = easyFind(test, 'a');
-		std::cout << "Found the parameter from index: " << std::distance(test.begin(), it) << std::endl;
-	}catch (std::exception &e){
-		std::cout << e.what() << std::endl;
-	}
 }
