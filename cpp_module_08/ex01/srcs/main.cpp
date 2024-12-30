@@ -1,9 +1,9 @@
 #include "Span.hpp"
-#include <iostream>
 #include <vector>
 #include <exception>
 #include <random>
 #include <algorithm>
+#include <iostream>
 
 
 int main(){
