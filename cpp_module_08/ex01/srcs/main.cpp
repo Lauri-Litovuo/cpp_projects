@@ -1,7 +1,6 @@
 #include "Span.hpp"
 #include <iostream>
 #include <vector>
-#include <array>
 #include <exception>
 #include <random>
 #include <algorithm>
