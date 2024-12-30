@@ -1,6 +1,5 @@
 #pragma once
 #include <stack>
-#include <iostream>
 #include <iterator>
 
 template <typename T, typename Container = std::deque<T>>
