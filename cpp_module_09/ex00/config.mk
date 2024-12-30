@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := span
+OUTFILE := btc
 
 # Compiler settings
 CXX := c++
@@ -15,10 +15,10 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp $SSpan.cpp
+		$Smain.cpp
 
 # Include directories
-CXXFLAGS += -Wall -Wextra -Werror -I$I
+CXXFLAGS += -Wall -Wextra -Werror -std=c++23 -I$I
 
 # Libraries to link (add -L for library directories and -l for libraries)
 LDFLAGS :=
