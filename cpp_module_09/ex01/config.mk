@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := mutantstack
+OUTFILE := RPN
 
 # Compiler settings
 CXX := c++
