@@ -15,7 +15,7 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp
+		$Smain.cpp $SRPN.cpp
 
 # Include directories
 CXXFLAGS += -Wall -Wextra -Werror -std=c++23 -I$I
