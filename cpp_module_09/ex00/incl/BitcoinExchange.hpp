@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <filesystem>
 
 # define DB_PATH "./srcs/data.csv"
 

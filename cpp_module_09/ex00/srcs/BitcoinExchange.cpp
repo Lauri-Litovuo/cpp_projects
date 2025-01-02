@@ -1,6 +1,8 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange(const char *filename){
+	if (!std::filesystem::is_regular_file(filename))
+		throw InvalidFileException();
 	std::ifstream file;
 	file.open(filename);
 	if (!file.is_open())
@@ -97,7 +99,6 @@ void BitcoinExchange::run(){
 		if (bctIt->error == eError::VALID)
 		{
 			std::vector<Bitcoin>::iterator dbIte = _findClosestDate(*bctIt);
-			std::cout << dbIte->date << " !=> " << dbIte->value << std::endl;
 			double totalValue = bctIt->value * dbIte->value;
 			std::cout << bctIt->date << " => " << bctIt->value << " = " << totalValue << std::endl;
 		}
@@ -122,10 +123,10 @@ void BitcoinExchange::_printError(Bitcoin &bitcoin){
 			std::cout << "Error: Invalid value" << " => "<< bitcoin.line << std::endl;
 			break;
 		case eError::INVALID_NEGATIVE_VALUE:
-			std::cout << "Error: Negative value" << " => "<< bitcoin.line << std::endl;
+			std::cout << "Error: Not a positive number" << " => "<< bitcoin.line << std::endl;
 			break;
 		case eError::INVALID_TOO_LARGE_VALUE:
-			std::cout << "Error: Value too large" << " => "<< bitcoin.line << std::endl;
+			std::cout << "Error: Too large number" << " => "<< bitcoin.line << std::endl;
 			break;
 		default:
 			std::cout << "Error: Unknown error" << " => "<< bitcoin.line << std::endl;
@@ -135,18 +136,25 @@ void BitcoinExchange::_printError(Bitcoin &bitcoin){
 
 std::vector<Bitcoin>::iterator BitcoinExchange::_findClosestDate(Bitcoin &bitcoin)
 {
-	std::vector<Bitcoin>::iterator closest = _database.begin();
-	int diff = std::abs(bitcoin.year - closest->year) * 365 + std::abs(bitcoin.month - closest->month) * 30 + std::abs(bitcoin.day - closest->day);
+	long diff = __LONG_MAX__;
+	long minDiff = __LONG_MAX__;
+	std::vector<Bitcoin>::iterator closest = _database.end();
 	for (std::vector<Bitcoin>::iterator it = _database.begin(); it != _database.end(); it++)
 	{
-		int newDiff = std::abs(bitcoin.year - it->year) * 365 + std::abs(bitcoin.month - it->month) * 30 + std::abs(bitcoin.day - it->day);
-		if (newDiff < diff || (newDiff == diff && (bitcoin.year < it->year || (bitcoin.year == it->year && bitcoin.month < it->month) || (bitcoin.year == it->year && bitcoin.month == it->month && bitcoin.day <= it->day))))
+		if ((it->year > bitcoin.year)
+			|| (it->year == bitcoin.year && it->month > bitcoin.month)
+			|| ((it->year == bitcoin.year && it->month == bitcoin.month) && it->day > bitcoin.day))
+			return (closest);
+		diff = std::abs(it->year - bitcoin.year) * 365 + std::abs(it->month - bitcoin.month) * 30 + std::abs(it->day - bitcoin.day);
+		if (diff == 0)
+			return (it);
+		if (diff < minDiff)
 		{
-			diff = newDiff;
+			minDiff = diff;
 			closest = it;
 		}
 	}
-	return closest;
+	return (closest);
 }
 
 void BitcoinExchange::_checkDate(std::string date, int &year_date, int &month_date, int &day_date){
@@ -231,7 +239,6 @@ void BitcoinExchange::_validateDB(){
 			if (pos == std::string::npos || pos == line.size() - 1 || pos == 0)
 				throw InvalidLineException();
 			date = line.substr(0, pos);
-			int year, month, day;
 			_checkDate(date, year, month, day);
 			value = line.substr(pos + 1);
 			_checkBitcoinValue(value);
