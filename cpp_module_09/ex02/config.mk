@@ -1,5 +1,5 @@
 # Exec name
-OUTFILE := mutantstack
+OUTFILE := PmergeMe
 
 # Compiler settings
 CXX := c++
@@ -15,7 +15,7 @@ I := ./incl/
 
 # Source files
 SRC := \
-		$Smain.cpp
+		$Smain.cpp $SPmergeMe.cpp
 
 # Include directories
 CXXFLAGS += -Wall -Wextra -Werror -std=c++23 -I$I

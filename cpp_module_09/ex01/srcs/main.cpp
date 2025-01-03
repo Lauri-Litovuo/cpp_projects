@@ -32,7 +32,7 @@ bool validateRPN(const std::string &s)
 	if (cnt != 2 || s.find_first_of("+-*/") < pos)
 		return false;
 
-	//checking that numbers are <= 10, that there is a space after each number and operator and that there is numbercount - 1 operators
+	//checking that numbers are < 10, that there is a space after each number and operator and that there is numbercount - 1 operators
 	unsigned int operatorCount = 0;
 	unsigned int numberCount = 0;
 	for (size_t i = 0; i < s.size(); ++i)
@@ -53,8 +53,6 @@ bool validateRPN(const std::string &s)
 			numberCount++;
 			if (i + 1 < s.size() && s[i + 1] == ' ')
 				continue;
-			else if (i + 2 < s.size() && s[i] == '1' && s[i + 1] == '0' && s[i + 2] == ' ')
-				i += 2;
 			else
 				return false;
 		}

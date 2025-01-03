@@ -27,11 +27,6 @@ void RPN::calculate(){
 			continue;
 		if (isdigit(*it))
 		{
-			if(it + 1 != _input.end() && isdigit(*(it + 1)))
-			{
-				stack.push(10);
-				continue;
-			}
 			stack.push(*it - '0');
 			continue;
 		}
