@@ -9,19 +9,23 @@ void printTheConversions(char c, int i, float f, double d)
 		std::cout << "Non displayable" << std::endl;
 	else
 		std::cout << "impossible" << std::endl;
-	
+
 	std::cout << "int: ";
 	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max() || std::isnan(d))
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << i << std::endl;
-	
+
 	std::cout << "float: ";
-	if (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max())
+	if (std::isinf(d) && d < 0)
+		std::cout << "-inff" << std::endl;
+	else if (std::isinf(d) && d > 0)
+		std::cout << "inff" << std::endl;
+	else if (d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max())
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-	
+
 	std::cout << "double: ";
 	std::cout << std::fixed << std::setprecision(1) << d << std::endl;
 }
@@ -39,10 +43,10 @@ eType getType(std::string input){
 
 	if (input.length() == 1 && !isdigit(input[0]))
 		return CHAR;
-	if (input == "-inf" || input == "+inf" || input == "nan")
-		return DOUBLE;
 	if (input == "-inff" || input == "+inff" || input == "nanf")
 		return FLOAT;
+	if (input == "-inf" || input == "+inf" || input == "nan")
+		return DOUBLE;
 	if (onlyNumbers(input))
 		return INT;
 	if (input.find('.') != std::string::npos)
@@ -98,7 +102,7 @@ void ScalarConverter::convert(const std::string &input)
 		std::cout << "Invalid argument: " << e.what() << std::endl;
 		return;
 	} catch (const std::out_of_range& e) {
-		std::cout << "Out of range: " << e.what() << std::endl;
+		std::cout << "Out of range: " << input << std::endl;
 		return;
 	}
 	printTheConversions(c, i, f, d);
