@@ -34,6 +34,11 @@ int main(int ac, char **av)
 			std::cerr << e.what() << std::endl;
 			return 1;
 		}
+		if (sequence.find(arg + " ") != std::string::npos )
+		{
+			std::cerr << "Error: Duplicate input: " << arg << std::endl;
+			return 1;
+		}
 		sequence += arg;
 		if (i + 1 < ac)
 			sequence += " ";

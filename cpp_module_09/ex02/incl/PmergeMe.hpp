@@ -22,14 +22,37 @@ class PMergeMe {
 		void sortList();
 		void sortDeque();
 		void printSorted();
+	
 	private:
 		std::string _input;
+
+		//list attributes
 		std::list<int> _inputList;
-		std::deque<int> _inputDeque;
+		std::list<pair> _list;
+		std::list <int> _mainList;
 		unsigned int _ListDMTime;
-		unsigned int _DequeDMTime;
 		unsigned int _ListSTime;
+
+		//deque attributes
+		std::deque<int> _inputDeque;
+		unsigned int _DequeDMTime;
 		unsigned int _DequeSTime;
 		std::deque<pair> _deque;
-		std::list<pair> _list;
+		std::deque <int> _mainDeque;
+
+		int getJacobsthalNumber(int n);
+
+		//list methods
+		void generateListPairs();
+		void sortPairElementsList();
+		void sortByMaxList();
+		void getMainList();
+		void insertToMainList();
+
+		//deque methods
+		void generateDequePairs();
+		void sortDequePairs();
+		void mergeMainAndSubDeque();
+		void insertToMainDeque();
+
 };

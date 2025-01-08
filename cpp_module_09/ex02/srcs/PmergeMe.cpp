@@ -59,6 +59,13 @@ void PMergeMe::fillDeque() {
 }
 
 void PMergeMe::sortList() {
+	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+	generateListPairs();
+	sortListPairs();
+	getMainList();
+	insertToMainList();
+	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+
 }
 
 void PMergeMe::sortDeque() {
@@ -75,7 +82,57 @@ void PMergeMe::printSorted() {
 	std::cout << "Data Management: " << _DequeDMTime << " microseconds" << std::endl;
 	std::cout << "Sorting: " << _DequeSTime << " microseconds" << std::endl;
 	std::cout << "Total: " << _DequeDMTime + _DequeSTime << " microseconds" << std::endl;
-	
+
 
 }
+
+//list methods
+void PMergeMe::generateListPairs() {
+	for (std::list<int>::iterator it = _inputList.begin(); it != _inputList.end(); it++) {
+		pair temp;
+		temp.min = *it;
+		it++;
+		if (it == _inputList.end())
+			break;
+		temp.max = *it;
+		_list.push_back(temp);
+	}
+}
+
+void PMergeMe::sortPairElementsList() {
+	for (std::list<pair>::iterator it = _list.begin(); it != _list.end(); it++) {
+		if (it->min > it->max) {
+			int temp = it->min;
+			it->min = it->max;
+			it->max = temp;
+		}
+	}
+}
+
+void PMergeMe::sortByMaxList(){
+	for (std::list<pair>::iterator it = _list.begin(); it != _list.end(); it++) {
+		for (std::list<pair>::iterator it2 = it; it2 != _list.end(); it2++) {
+			if (it->max > it2->max) {
+				pair temp = *it;
+				*it = *it2;
+				*it2 = temp;
+			}
+		}
+	}
+}
+
+void PMergeMe::insertToMainList() {
+	_mainList.sort();
+}
+
+//helper functions
+
+int PMergeMe::getJacobsthalNumber(int n) {
+	if (n == 0)
+		return 0;
+	if (n == 1)
+		return 1;
+	return getJacobsthalNumber(n - 1) + 2 * getJacobsthalNumber(n - 2);
+}
+
 
