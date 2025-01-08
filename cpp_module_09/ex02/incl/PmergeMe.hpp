@@ -17,10 +17,19 @@ class PMergeMe {
 		PMergeMe(const PMergeMe &src);
 		PMergeMe &operator=(const PMergeMe &rhs);
 
-		bool validateInput();
+		void fillList();
+		void fillDeque();
 		void sortList();
 		void sortDeque();
-		void printResults();
+		void printSorted();
 	private:
-		std::deque ()
+		std::string _input;
+		std::list<int> _inputList;
+		std::deque<int> _inputDeque;
+		unsigned int _ListDMTime;
+		unsigned int _DequeDMTime;
+		unsigned int _ListSTime;
+		unsigned int _DequeSTime;
+		std::deque<pair> _deque;
+		std::list<pair> _list;
 };

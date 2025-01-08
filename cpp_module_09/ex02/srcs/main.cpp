@@ -2,9 +2,24 @@
 #include <string>
 #include "PmergeMe.hpp"
 
+static void validateInput(std::string &arg)
+{
+	for (size_t i = 0; i < arg.length(); i++)
+	{
+		if (!isdigit(arg[i]))
+			throw std::invalid_argument("Invalid input: " + arg);
+	}
+	try {
+		std::stoi(arg);
+	}
+	catch (std::exception &e) {
+		throw std::invalid_argument("Invalid input: " + arg);
+	}
+}
+
 int main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac < 2 || ac > 3002)
 	{
 		std::cerr << "Usage: ./PmergeMe <sequence of positive integers>" << std::endl;
 		return 1;
@@ -13,9 +28,10 @@ int main(int ac, char **av)
 	for (int i = 1; i < ac; i++)
 	{
 		std::string arg(av[i]);
-		if (arg.find_first_not_of("0123456789") != std::string::npos)
-		{
-			std::cerr << "Error: invalid input" << std::endl;
+		try{
+			validateInput(arg);
+		}catch (std::exception &e) {
+			std::cerr << e.what() << std::endl;
 			return 1;
 		}
 		sequence += arg;
@@ -23,7 +39,12 @@ int main(int ac, char **av)
 			sequence += " ";
 	}
 	try {
-		std::cout << sequence << std::endl;
+		PMergeMe pmm(sequence);
+		pmm.fillList();
+		pmm.fillDeque();
+		pmm.sortList();
+		pmm.sortDeque();
+		pmm.printSorted();
 	}
 	catch (std::exception &e) {
 		std::cerr << "Error: " << e.what() << std::endl;
