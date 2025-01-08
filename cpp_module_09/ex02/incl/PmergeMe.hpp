@@ -33,6 +33,12 @@ class PMergeMe {
 		unsigned int _ListDMTime;
 		unsigned int _ListSTime;
 
+		//list methods
+		void generateListPairs();
+		void sortPairElementsList();
+		void getAndSortMainList();
+		void insertToMainList();
+
 		//deque attributes
 		std::deque<int> _inputDeque;
 		unsigned int _DequeDMTime;
@@ -40,19 +46,12 @@ class PMergeMe {
 		std::deque<pair> _deque;
 		std::deque <int> _mainDeque;
 
-		int getJacobsthalNumber(int n);
-
-		//list methods
-		void generateListPairs();
-		void sortPairElementsList();
-		void sortByMaxList();
-		void getMainList();
-		void insertToMainList();
-
 		//deque methods
 		void generateDequePairs();
 		void sortDequePairs();
 		void mergeMainAndSubDeque();
 		void insertToMainDeque();
 
+		//helper methods
+		int getJacobsthalNumber(int n);
 };

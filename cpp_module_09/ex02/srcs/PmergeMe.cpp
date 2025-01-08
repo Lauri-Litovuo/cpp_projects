@@ -61,8 +61,8 @@ void PMergeMe::fillDeque() {
 void PMergeMe::sortList() {
 	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 	generateListPairs();
-	sortListPairs();
-	getMainList();
+	sortPairElementsList();
+	getAndSortMainList();
 	insertToMainList();
 	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
 
@@ -82,8 +82,6 @@ void PMergeMe::printSorted() {
 	std::cout << "Data Management: " << _DequeDMTime << " microseconds" << std::endl;
 	std::cout << "Sorting: " << _DequeSTime << " microseconds" << std::endl;
 	std::cout << "Total: " << _DequeDMTime + _DequeSTime << " microseconds" << std::endl;
-
-
 }
 
 //list methods
@@ -109,16 +107,8 @@ void PMergeMe::sortPairElementsList() {
 	}
 }
 
-void PMergeMe::sortByMaxList(){
-	for (std::list<pair>::iterator it = _list.begin(); it != _list.end(); it++) {
-		for (std::list<pair>::iterator it2 = it; it2 != _list.end(); it2++) {
-			if (it->max > it2->max) {
-				pair temp = *it;
-				*it = *it2;
-				*it2 = temp;
-			}
-		}
-	}
+void PMergeMe::getAndSortMainList(){
+	
 }
 
 void PMergeMe::insertToMainList() {
