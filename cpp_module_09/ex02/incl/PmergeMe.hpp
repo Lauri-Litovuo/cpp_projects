@@ -30,16 +30,18 @@ class PMergeMe {
 		//list attributes
 		std::list<int> _inputList;
 		std::list<pair> _list;
-		std::list <int> _mainList;
+		std::list<int> _mainList;
+		std::list<int> _subList;
+		int				_single;
 		std::chrono::time_point<std::chrono::system_clock> _listStartTime;
 		std::chrono::time_point<std::chrono::system_clock> _listEndTime;
 
 		//list methods
 		void generateListPairs();
 		void sortPairElementsList();
-		void getMainList();
 		void mergeSortMainList();
 		void insertSortMainList();
+		void getMainAndSubList();
 
 		//deque attributes
 		std::deque<int> _inputDeque;
@@ -52,5 +54,7 @@ class PMergeMe {
 
 
 		//helper methods
-		int getJacobsthalNumber(int n);
 };
+
+int getJacobsthalNumber(int n);
+std::list<int>::iterator binarySearchListPosition(std::list<int> & _mainList, int number);
