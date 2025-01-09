@@ -114,6 +114,7 @@ void PMergeMe::getMainList(){
 		_mainList.push_back(it->max);
 	}
 
+
 }
 
 void mergeList(std::list<int> &list, int left, int mid, int right){
@@ -179,6 +180,10 @@ void PMergeMe::mergeSortMainList(){
 }
 
 void PMergeMe::insertSortMainList() {
+	std::list<int> subList;
+	for (std::list<int>::iterator it = _mainList.begin(); it != _mainList.end(); it++)
+
+	int jacobstahl = getJacobsthalNumber(i + 2);
 }
 
 //deque methods
