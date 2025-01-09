@@ -34,7 +34,7 @@ int main(int ac, char **av)
 			std::cerr << e.what() << std::endl;
 			return 1;
 		}
-		if (sequence.find(arg + " ") != std::string::npos )
+		if (sequence.find(arg + " ") != std::string::npos && (sequence.find(arg + " ") - 1 == ' ' || sequence.find(arg + " ") == 0))
 		{
 			std::cerr << "Error: Duplicate input: " << arg << std::endl;
 			return 1;
@@ -46,8 +46,8 @@ int main(int ac, char **av)
 	try {
 		PMergeMe pmm(sequence);
 		pmm.fillList();
-		pmm.fillDeque();
 		pmm.sortList();
+		pmm.fillDeque();
 		pmm.sortDeque();
 		pmm.printSorted();
 	}

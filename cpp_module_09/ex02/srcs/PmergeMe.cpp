@@ -13,21 +13,21 @@ PMergeMe::PMergeMe(const PMergeMe &src) {
 //keep this updated
 PMergeMe &PMergeMe::operator=(const PMergeMe &rhs) {
 	if (this != &rhs) {
-		_input = rhs._input;
-		_inputList = rhs._inputList;
-		_inputDeque = rhs._inputDeque;
-		_ListDMTime = rhs._ListDMTime;
-		_DequeDMTime = rhs._DequeDMTime;
-		_ListSTime = rhs._ListSTime;
-		_DequeSTime = rhs._DequeSTime;
-		_deque = rhs._deque;
-		_list = rhs._list;
+		// _input = rhs._input;
+		// _inputList = rhs._inputList;
+		// _inputDeque = rhs._inputDeque;
+		// _ListDMTime = rhs._ListDMTime;
+		// _DequeDMTime = rhs._DequeDMTime;
+		// _ListSTime = rhs._ListSTime;
+		// _DequeSTime = rhs._DequeSTime;
+		// _deque = rhs._deque;
+		// _list = rhs._list;
 	}
 	return *this;
 };
 
 void PMergeMe::fillList() {
-	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+	_listStartTime = std::chrono::system_clock::now();
 	std::string temp;
 	for (size_t i = 0; i < _input.length(); i++) {
 		if (_input[i] == ' ') {
@@ -38,12 +38,10 @@ void PMergeMe::fillList() {
 		}
 	}
 	_inputList.push_back(std::stoi(temp));
-	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
-	_ListDMTime = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 };
 
 void PMergeMe::fillDeque() {
-	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+	_dequeStartTime = std::chrono::system_clock::now();
 	std::string temp;
 	for (size_t i = 0; i < _input.length(); i++) {
 		if (_input[i] == ' ') {
@@ -54,17 +52,21 @@ void PMergeMe::fillDeque() {
 		}
 	}
 	_inputDeque.push_back(std::stoi(temp));
-	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
-	_DequeDMTime = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 }
 
 void PMergeMe::sortList() {
-	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 	generateListPairs();
 	sortPairElementsList();
-	getAndSortMainList();
-	insertToMainList();
-	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+	// for(auto v : _list)
+	// 	std::cout << v.max << " " << v.min << std::endl;
+	getMainList();
+	// for(auto v : _mainList)
+	// 	std::cout << v << std::endl;
+	mergeSortMainList();
+	// for(auto v : _mainList)
+	// 	std::cout << v << std::endl;
+	insertSortMainList();
+	_listEndTime = std::chrono::system_clock::now();
 
 }
 
@@ -74,14 +76,10 @@ void PMergeMe::sortDeque() {
 void PMergeMe::printSorted() {
 	std::cout << "Before: " << _input << std::endl;
 	std::cout << "After : " << std::endl;
-	std::cout << "Time to process range of: " << " elements with std::list:" << std::endl;
-	std::cout << "Data Management: " << _ListDMTime << " microseconds" << std::endl;
-	std::cout << "Sorting: " << _ListSTime << " microseconds" << std::endl;
-	std::cout << "Total: " << _ListDMTime + _ListSTime << " microseconds" << std::endl;
-	std::cout << "Time to process range of: " << " elements with std::deque:" << std::endl;
-	std::cout << "Data Management: " << _DequeDMTime << " microseconds" << std::endl;
-	std::cout << "Sorting: " << _DequeSTime << " microseconds" << std::endl;
-	std::cout << "Total: " << _DequeDMTime + _DequeSTime << " microseconds" << std::endl;
+	unsigned int listTime = std::chrono::duration_cast<std::chrono::microseconds>(_listEndTime - _listStartTime).count();
+	unsigned int dequeTime = std::chrono::duration_cast<std::chrono::microseconds>(_dequeEndTime - _dequeStartTime).count();
+	std::cout << "Time to process range of: "<< _mainList.size() << " elements with std::list " << listTime << " microseconds" << std::endl;
+	std::cout << "Time to process range of: " << " elements with std::deque " << dequeTime << " microseconds" << std::endl;
 }
 
 //list methods
@@ -91,7 +89,10 @@ void PMergeMe::generateListPairs() {
 		temp.min = *it;
 		it++;
 		if (it == _inputList.end())
+		{
+			temp.max = -1;
 			break;
+		}
 		temp.max = *it;
 		_list.push_back(temp);
 	}
@@ -107,13 +108,82 @@ void PMergeMe::sortPairElementsList() {
 	}
 }
 
-void PMergeMe::getAndSortMainList(){
-	
+void PMergeMe::getMainList(){
+	std::list<int> mainList;
+	for (std::list<pair>::iterator it = _list.begin(); it != _list.end(); it++){
+		_mainList.push_back(it->max);
+	}
+
 }
 
-void PMergeMe::insertToMainList() {
-	_mainList.sort();
+void mergeList(std::list<int> &list, int left, int mid, int right){
+
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
+
+	std::list<int> L, R;
+
+	std::list<int>::iterator it = std::next(list.begin(), left);
+	for (int i = 0; i < n1; i++){
+		L.push_back(*it);
+		++it;
+	}
+
+	it =  std::next(list.begin(), mid + 1);
+	for (int i = 0; i < n2; i++){
+		R.push_back(*it);
+		++it;
+	}
+
+	it = std::next(list.begin(), left);
+	std::list<int>::iterator itL = L.begin(), itR = R.begin();
+	while (itL != L.end() && itR != R.end()){
+		if (*itL <= *itR){
+			*it = *itL;
+			++itL;
+		}
+		else {
+			*it = *itR;
+			++itR;
+		}
+		++it;
+	}
+
+	while (itL != L.end()){
+		*it = *itL;
+		++itL;
+		++it;
+	}
+
+	while (itR != R.end()){
+		*it = *itR;
+		++itR;
+		++it;
+	}
+
 }
+
+void mergeSortList(std::list<int> &list, int left, int right){
+	if (left >= right)
+		return;
+	int mid = left + (right - left) / 2;
+	mergeSortList(list, left, mid);
+	mergeSortList(list, mid + 1, right);
+	mergeList(list, left, mid, right);
+};
+
+void PMergeMe::mergeSortMainList(){
+	int left = 0;
+	int right = _mainList.size() - 1;
+	mergeSortList(_mainList, left, right);
+}
+
+void PMergeMe::insertSortMainList() {
+}
+
+//deque methods
+
+
 
 //helper functions
 
@@ -124,5 +194,6 @@ int PMergeMe::getJacobsthalNumber(int n) {
 		return 1;
 	return getJacobsthalNumber(n - 1) + 2 * getJacobsthalNumber(n - 2);
 }
+
 
 
