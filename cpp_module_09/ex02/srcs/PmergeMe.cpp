@@ -43,12 +43,17 @@ void PMergeMe::fillList() {
 
 
 void PMergeMe::sortList() {
+	if(_inputList.size() == 0 || _inputList.size() == 1)
+	{
+		_mainList = _inputList; 
+		_listEndTime = std::chrono::system_clock::now();
+		return;
+	}
 	generateListPairs();
 	sortPairElementsList();
 	mergeSortMainList();
 	insertSortMainList();
 	_listEndTime = std::chrono::system_clock::now();
-
 }
 
 void PMergeMe::fillDeque() {
@@ -66,6 +71,18 @@ void PMergeMe::fillDeque() {
 }
 
 void PMergeMe::sortDeque() {
+	if (_inputDeque.size() == 0 || _inputDeque.size() == 1)
+	{
+		_mainDeque = _inputDeque;
+		_dequeEndTime = std::chrono::system_clock::now();
+		return;
+	}
+	generateDequePairs();
+	sortPairElementsDeque();
+	mergeSortMainDeque();
+	insertSortMainDeque();
+	_dequeEndTime = std::chrono::system_clock::now();
+
 }
 
 void PMergeMe::printSorted() {
@@ -73,11 +90,19 @@ void PMergeMe::printSorted() {
 	std::string sortedList;
 	for (std::list<int>::iterator it = _mainList.begin(); it != _mainList.end(); it++)
 		sortedList += std::to_string(*it) + " ";
+	
+	std::string sortedDeque;
+	for (std::deque<int>::iterator it = _mainDeque.begin(); it != _mainDeque.end(); it++)
+		sortedDeque += std::to_string(*it) + " ";
+	if (sortedDeque != sortedList){
+		std::cerr << "Error: Sorted differently" << std::endl;
+		return;
+	}
 	std::cout << "After : " << sortedList << std::endl;
 	unsigned int listTime = std::chrono::duration_cast<std::chrono::microseconds>(_listEndTime - _listStartTime).count();
 	unsigned int dequeTime = std::chrono::duration_cast<std::chrono::microseconds>(_dequeEndTime - _dequeStartTime).count();
-	std::cout << "Time to process range of: "<< _mainList.size() << " elements with std::list " << listTime << " microseconds" << std::endl;
-	std::cout << "Time to process range of: " << " elements with std::deque " << dequeTime << " microseconds" << std::endl;
+	std::cout << "Time to process range of: " << _mainList.size() << " elements with std::list " << listTime << " microseconds" << std::endl;
+	std::cout << "Time to process range of: " << _mainDeque.size() << " elements with std::deque " << dequeTime << " microseconds" << std::endl;
 }
 
 //list methods
@@ -183,14 +208,14 @@ void PMergeMe::insertSortMainList() {
 	while (previousIndex != _subList.size() - 1)
 	{
 		size_t index = getJacobsthalNumber(n + 2) - 1;
-		if (index > _subList.size())
+		if (index > _subList.size() - 1)
 			index = _subList.size() - 1;
 		for (size_t i = index; i > previousIndex; i--)
 		{
 			it = _subList.begin();
 			std::advance(it, i);
 			int number = *it;
-			std::list<int>::iterator pos = binarySearchListPosition(_mainList, number);
+			std::list<int>::iterator pos = binarySearchListPosition(_mainList.begin(), _mainList.end(), number);
 			_mainList.insert(pos, number);
 		}
 		previousIndex = index;
@@ -198,14 +223,129 @@ void PMergeMe::insertSortMainList() {
 	}
 	if (_single != -1)
 	{
-			std::list<int>::iterator pos = binarySearchListPosition(_mainList, _single);
+			std::list<int>::iterator pos = binarySearchListPosition(_mainList.begin(), _mainList.end(), _single);
 			_mainList.insert(pos, _single);
 	}
 }
 
+
+
 //deque methods
 
+void PMergeMe::generateDequePairs() {
+	for (std::deque<int>::iterator it = _inputDeque.begin(); it != _inputDeque.end(); it++) {
+		pair temp;
+		temp.min = *it;
+		it++;
+		if (it == _inputDeque.end())
+		{
+			_single = temp.min;
+			break;
+		}
+		temp.max = *it;
+		_deque.push_back(temp);
+	}
+}
 
+void PMergeMe::sortPairElementsDeque() {
+	for (std::deque<pair>::iterator it = _deque.begin(); it != _deque.end(); it++) {
+		if (it->min > it->max) {
+			int temp = it->min;
+			it->min = it->max;
+			it->max = temp;
+		}
+	}
+}
+
+void mergeDeque(std::deque<pair> &deque, int left, int mid, int right){
+
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
+
+	std::deque<pair> L(n1), R(n2);
+
+	for (int i = 0; i < n1; i++)
+		L[i] = deque[left + i];
+	for (int j = 0; j < n2; j++)
+		R[j] = deque[mid + 1 + j];
+	
+	int i = 0, j = 0, k = left;
+	while (i < n1 && j < n2){
+		if (L[i].max <= R[j].max){
+			deque[k] = L[i];
+			i++;
+		}
+		else {
+			deque[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+
+	while (i < n1){
+		deque[k] = L[i];
+		i++;
+		k++;
+	}
+
+	while (j < n2){
+		deque[k] = R[j];
+		j++;
+		k++;
+	}
+}
+
+void mergeSortDeque(std::deque<pair> &deque, int left, int right){
+	if (left >= right)
+		return;
+	int mid = left + (right - left) / 2;
+	mergeSortDeque(deque, left, mid);
+	mergeSortDeque(deque, mid + 1, right);
+	mergeDeque(deque, left, mid, right);
+};
+
+void PMergeMe::mergeSortMainDeque() {
+	int left = 0;
+	int right = _deque.size() - 1;
+	mergeSortDeque(_deque, left, right);
+}
+
+void PMergeMe::getMainAndSubDeque() {
+	for (std::deque<pair>::iterator it = _deque.begin(); it != _deque.end(); it++) {
+		_mainDeque.push_back(it->max);
+		_subDeque.push_back(it->min);
+	}
+}
+
+
+void PMergeMe::insertSortMainDeque() {
+	getMainAndSubDeque();
+	std::deque<int>::iterator it = _subDeque.begin();
+	_mainDeque.push_front(*it);
+
+	size_t previousIndex = 0, n = 1;
+	while (previousIndex != _subDeque.size() - 1)
+	{
+		size_t index = getJacobsthalNumber(n + 2) - 1;
+		if (index > _subDeque.size() - 1)
+			index = _subDeque.size() - 1;
+		for (size_t i = index; i > previousIndex; i--)
+		{
+			int number = _subDeque[i];
+			size_t pos = binarySearchPositionDeque(_mainDeque, 0, _mainDeque.size(), number);
+			pos = std::min(pos, _mainDeque.size());
+			_mainDeque.insert(_mainDeque.begin() + pos, number);
+		}
+		previousIndex = index;
+		n++;
+	}
+	if (_single != -1)
+	{
+		size_t pos = binarySearchPositionDeque(_mainDeque, 0, _mainDeque.size(), _single);
+		pos = std::min(pos, _mainDeque.size());
+		_mainDeque.insert(_mainDeque.begin() + pos, _single);
+	}
+}
 
 //helper functions
 
@@ -218,21 +358,25 @@ int getJacobsthalNumber(int n) {
 	return getJacobsthalNumber(n - 1) + 2 * getJacobsthalNumber(n - 2);
 }
 
-std::list<int>::iterator binarySearchListPosition(std::list<int> &mainList, int number){
-	std::list<int>::iterator begin = mainList.begin();
-	std::list<int>::iterator end = mainList.end();
-	std::list<int>::iterator mid;
-
-	while (begin != end){
-		mid = begin;
-		std::advance(mid, std::distance(begin,end) / 2);
-		if (*mid < number)
-			begin = ++mid;
-		else
-			end = mid;
-	}
-	return begin;
+std::list<int>::iterator binarySearchListPosition(std::list<int>::iterator begin, std::list<int>::iterator end, int number){
+	if (begin == end)
+		return begin;
+	std::list<int>::iterator mid = begin;
+	std::advance(mid, std::distance(begin, end) / 2);
+	if (*mid < number)
+		return binarySearchListPosition(++mid, end, number);
+	else
+		return binarySearchListPosition(begin, mid, number);
 }
 
+size_t binarySearchPositionDeque(std::deque<int> &mainDeque, size_t begin, size_t end, int number){
+	if (begin >= end)
+		return begin;
+	size_t mid = begin + (end - begin) / 2;
+	if (mainDeque[mid] < number)
+		return binarySearchPositionDeque(mainDeque, mid + 1, end, number);
+	else
+		return binarySearchPositionDeque(mainDeque, begin, mid, number);
+}
 
 
