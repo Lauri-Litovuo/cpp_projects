@@ -14,15 +14,20 @@ PMergeMe::PMergeMe(const PMergeMe &src) {
 //keep this updated
 PMergeMe &PMergeMe::operator=(const PMergeMe &rhs) {
 	if (this != &rhs) {
-		// _input = rhs._input;
-		// _inputList = rhs._inputList;
-		// _inputDeque = rhs._inputDeque;
-		// _ListDMTime = rhs._ListDMTime;
-		// _DequeDMTime = rhs._DequeDMTime;
-		// _ListSTime = rhs._ListSTime;
-		// _DequeSTime = rhs._DequeSTime;
-		// _deque = rhs._deque;
-		// _list = rhs._list;
+		_input = rhs._input;
+		_inputList = rhs._inputList;
+		_list = rhs._list;
+		_mainList = rhs._mainList;
+		_subList = rhs._subList;
+		_single = rhs._single;
+		_listStartTime = rhs._listStartTime;
+		_listEndTime = rhs._listEndTime;
+		_inputDeque = rhs._inputDeque;
+		_dequeStartTime = rhs._dequeStartTime;
+		_dequeEndTime = rhs._dequeEndTime;
+		_deque = rhs._deque;
+		_mainDeque = rhs._mainDeque;
+		_subDeque = rhs._subDeque;
 	}
 	return *this;
 };
