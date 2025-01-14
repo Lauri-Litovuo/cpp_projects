@@ -18,7 +18,7 @@ SRC := \
 		$Smain.cpp $SBitcoinExchange.cpp
 
 # Include directories
-CXXFLAGS += -Wall -Wextra -Werror -std=c++23 -I$I
+CXXFLAGS += -Wall -Wextra -Werror -std=c++20 -I$I
 
 # Libraries to link (add -L for library directories and -l for libraries)
 LDFLAGS :=
