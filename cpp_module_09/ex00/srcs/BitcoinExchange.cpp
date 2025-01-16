@@ -197,6 +197,14 @@ void BitcoinExchange::_checkValue(std::string value){
 		throw NegativeValueException();
 	if (value.find_first_not_of("0123456789.") != std::string::npos)
 		throw InvalidValueException();
+	if (value.find(".") != std::string::npos)
+	{
+		std::string::size_type pos = value.find(".");
+		if (pos == value.size() - 1)
+			throw InvalidValueException();
+		if (value.find(".", pos + 1) != std::string::npos)
+			throw InvalidValueException();
+	}
 	try{
 		double valueDouble = std::stod(value);
 		if (valueDouble < 0)
@@ -257,6 +265,14 @@ void BitcoinExchange::_checkBitcoinValue(std::string value){
 		throw NegativeValueException();
 	if (value.find_first_not_of("0123456789.") != std::string::npos)
 		throw InvalidValueException();
+	if (value.find(".") != std::string::npos)
+	{
+		std::string::size_type pos = value.find(".");
+		if (pos == value.size() - 1)
+			throw InvalidValueException();
+		if (value.find(".", pos + 1) != std::string::npos)
+			throw InvalidValueException();
+	}
 	try{
 		double valueDouble = std::stod(value);
 		if (valueDouble < 0)
