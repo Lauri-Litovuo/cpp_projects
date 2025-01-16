@@ -236,12 +236,12 @@ void BitcoinExchange::_validateDB(){
 	std::vector<Bitcoin> database;
 	while(std::getline(file, line))
 	{
-			std::string date = "";
-			std::string value = "";
-			int year = 0;
-			int month = 0;
-			int day = 0;
-			std::string::size_type pos = 0;
+		std::string date = "";
+		std::string value = "";
+		int year = 0;
+		int month = 0;
+		int day = 0;
+		std::string::size_type pos = 0;
 		try{
 			pos = line.find(",");
 			if (pos == std::string::npos || pos == line.size() - 1 || pos == 0)
